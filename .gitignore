@@ -1,0 +1,6 @@
+# 공개 저장소(GitHub Pages): 페이지 파일만 올리고 시안 이미지·영상·문서는 올리지 않는다
+*
+!.gitignore
+!.nojekyll
+!index.html
+!CNAME

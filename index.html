@@ -1,0 +1,668 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<!-- 정식 공개(견적 승인) 전까지 검색 노출 막기: 공개할 때 이 줄을 지운다 -->
+<meta name="robots" content="noindex">
+<!-- 상담 신청을 받을 구글 앱스 스크립트 웹 앱 주소(…/exec). 비어 있으면 "접수 준비 중" 안내만 나온다 -->
+<meta name="lf-endpoint" content="">
+<title>로프렌즈 | 법무법인 도우화산</title>
+<meta name="description" content="법무법인 도우화산의 로프렌즈 서비스. 사건 유형과 상황을 남겨 주시면 도우화산 변호사가 직접 확인하고 연락드립니다.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+KR:wght@500;700&display=swap" rel="stylesheet">
+<link href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css" rel="stylesheet">
+<style>
+:root{
+  --bg:#F6F4EF; --surface:#FFFFFF; --ink:#152131; --muted:#5D6776; --line:#E4DFD4;
+  --navy:#12284A; --navy-ink:#F4F1EA; --navy-muted:#B4BFCF; --gold:#A8834A; --gold-soft:#F2EADC;
+  --danger:#B42318;
+  --serif:"Noto Serif KR",serif; --sans:"Pretendard",-apple-system,"Malgun Gothic",sans-serif;
+}
+@media (prefers-color-scheme:dark){:root{
+  --bg:#0F1621; --surface:#172232; --ink:#E8ECF1; --muted:#9BA7B6; --line:#27354A;
+  --navy:#0A1424; --navy-ink:#EEF1F5; --navy-muted:#95A3B6; --gold:#C9A76E; --gold-soft:#2B2519;
+  --danger:#F97066;
+}}
+*{box-sizing:border-box;margin:0}
+[hidden]{display:none!important}
+html{scroll-behavior:smooth}
+@media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
+body{background:var(--bg);color:var(--ink);font:16px/1.65 var(--sans);-webkit-font-smoothing:antialiased;word-break:keep-all}
+a{color:inherit}
+.wrap{max-width:1120px;margin:0 auto;padding:0 20px}
+:focus-visible{outline:2px solid var(--gold);outline-offset:2px}
+
+/* header */
+.top{position:sticky;top:0;z-index:20;background:var(--navy);border-bottom:1px solid rgba(255,255,255,.08)}
+.top-in{display:flex;align-items:center;justify-content:space-between;height:62px}
+.top-r{display:flex;align-items:center;gap:8px}
+.brand{display:flex;align-items:center;gap:10px;text-decoration:none;color:var(--navy-ink)}
+.mark{width:34px;height:34px;border:1.5px solid var(--gold);border-radius:9px;display:grid;place-items:center;font:700 18px/1 var(--serif);color:var(--gold);flex:none}
+.brand-txt{display:flex;flex-direction:column}
+.brand-txt b{font:700 20px/1.1 var(--serif);letter-spacing:-.01em;white-space:nowrap}
+.brand-txt small{font-size:9.5px;letter-spacing:.22em;color:var(--navy-muted);margin-top:4px}
+.lang{display:inline-flex;align-items:center;gap:6px;height:38px;padding:0 12px;border-radius:10px;border:1px solid rgba(255,255,255,.2);background:transparent;color:var(--navy-ink);font:600 13.5px var(--sans);cursor:pointer}
+.lang:hover{background:rgba(255,255,255,.08)}
+.lang svg{width:16px;height:16px;color:var(--gold)}
+@media (max-width:379px){.lang svg{display:none}.brand-txt b{font-size:17px}.top-r{gap:6px}.lang,.btn-sm{padding:0 11px}}
+
+/* buttons */
+.btn{display:inline-flex;align-items:center;justify-content:center;height:54px;padding:0 28px;border-radius:10px;font:700 16px/1 var(--sans);text-decoration:none;border:0;cursor:pointer;transition:background .2s;white-space:nowrap}
+.btn-sm{height:38px;padding:0 16px;font-size:14px;color:var(--navy-ink);border:1px solid rgba(255,255,255,.3);background:transparent}
+.btn-sm:hover{background:rgba(255,255,255,.08)}
+.btn-gold{background:var(--gold);color:#fff}
+.btn-gold:hover{background:#94723D}
+.btn-block{width:100%}
+.btn:disabled{opacity:.6;cursor:wait}
+
+/* hero */
+.hero{background:var(--navy) radial-gradient(900px 480px at 90% -10%,rgba(201,167,110,.20),transparent 60%);color:var(--navy-ink);padding:44px 0 60px}
+.hero-in{display:grid;gap:44px}
+.eyebrow{display:inline-block;text-wrap:balance;font-size:13.5px;font-weight:600;color:var(--gold);padding-bottom:10px;border-bottom:1px solid rgba(201,167,110,.45);margin-bottom:22px}
+h1{font:700 34px/1.34 var(--serif);letter-spacing:-.02em}
+.lead{margin-top:18px;color:var(--navy-muted);max-width:32em}
+.hero-cta{margin-top:30px;display:flex;flex-direction:column;gap:10px}
+.cta-note{font-size:13px;color:var(--navy-muted);text-align:center}
+.trust{list-style:none;padding:0;margin-top:26px;display:flex;flex-wrap:wrap;gap:10px 20px;font-size:14px}
+.trust li{display:flex;align-items:center;gap:7px}
+.trust svg{width:16px;height:16px;color:var(--gold);flex:none}
+
+/* example memo (paper stays light in dark mode) */
+.memo{position:relative;background:#FBF9F4;color:#1D2633;border-radius:14px;padding:24px 20px 18px;box-shadow:0 26px 60px rgba(0,0,0,.35);transform:rotate(-1.2deg);max-width:440px;width:100%;justify-self:center}
+.memo-tag{position:absolute;top:16px;right:16px;font-size:11px;font-weight:700;color:#8A6A35;background:#F2EADC;border-radius:999px;padding:3px 10px}
+.memo-title{font:700 17px/1.3 var(--serif);padding-bottom:12px;border-bottom:1px solid #E6DFD0}
+.memo dl div{display:grid;grid-template-columns:82px 1fr;gap:10px;padding:11px 0;border-bottom:1px dashed #E6DFD0;font-size:14px;line-height:1.5}
+.memo dt{color:#7A8391}
+.memo dd{margin:0;font-weight:600;text-wrap:pretty;transition:opacity .3s,transform .3s}
+html[lang="en"] .memo dl div{grid-template-columns:112px 1fr}
+.memo.swap dd{opacity:0;transform:translateY(4px)}
+.memo mark{color:inherit;background:linear-gradient(transparent 52%,rgba(214,179,96,.6) 52%) no-repeat;background-size:100% 100%;-webkit-box-decoration-break:clone;box-decoration-break:clone;padding:0 2px}
+@media (prefers-reduced-motion:no-preference){.memo mark{animation:hl 1.2s .5s ease-out both}}
+@keyframes hl{from{background-size:0 100%}}
+.memo-foot{display:flex;justify-content:space-between;align-items:center;margin-top:14px}
+.memo-dots{display:flex;gap:5px}
+.memo-dots i{width:6px;height:6px;border-radius:3px;background:#E0D6C3;transition:width .3s,background .3s}
+.memo-dots i.on{width:18px;background:#A8834A}
+.memo-sign{font:500 13px var(--serif);color:#7A8391}
+
+/* sections */
+.sec{padding:64px 0}
+.sec-alt{background:var(--surface);border-block:1px solid var(--line)}
+.kicker{font-size:13px;font-weight:700;color:var(--gold);letter-spacing:.06em;margin-bottom:10px}
+h2{font:700 25px/1.42 var(--serif);letter-spacing:-.02em;text-wrap:balance}
+.sec-sub{margin-top:10px;color:var(--muted);font-size:15px}
+
+.cases{list-style:none;padding:0;margin-top:28px;display:grid;gap:10px}
+.case{width:100%;height:100%;text-align:left;display:grid;grid-template-columns:44px 1fr;column-gap:14px;align-content:start;background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:18px;color:var(--ink);font:inherit;cursor:pointer;transition:border-color .2s,box-shadow .2s}
+.case:hover{border-color:var(--gold);box-shadow:0 10px 26px rgba(18,40,74,.08)}
+.case-ic{grid-row:span 4;width:44px;height:44px;border-radius:12px;background:var(--gold-soft);color:var(--gold);display:grid;place-items:center}
+.case-ic svg{width:22px;height:22px}
+.case-cat{font-size:12.5px;font-weight:700;color:var(--gold)}
+.case strong{font-size:17px;line-height:1.4;margin-top:2px}
+.case-desc{font-size:14px;color:var(--muted);margin-top:6px;line-height:1.6}
+.case-go{display:none;font-size:13px;font-weight:700;margin-top:10px;color:var(--ink)}
+@media (max-width:899px){.case{padding:16px}.case strong{font-size:16.5px}.case-desc{font-size:13.5px;margin-top:4px}}
+
+.two{display:grid;gap:56px}
+.checks{list-style:none;padding:0;margin-top:24px;display:grid;gap:10px}
+.checks li{display:flex;gap:12px;align-items:flex-start;padding:14px 16px;border:1px solid var(--line);border-radius:12px;background:var(--bg)}
+.checks svg{width:20px;height:20px;color:var(--gold);flex:none;margin-top:2px}
+.checks li div{text-wrap:balance}
+.checks b{display:block;font-size:15.5px}
+.checks span{font-size:14px;color:var(--muted)}
+.note{margin-top:12px;font-size:13.5px;color:var(--muted)}
+.steps{list-style:none;padding:0;margin-top:24px}
+.steps li{display:grid;grid-template-columns:52px 1fr;gap:12px;padding:18px 0;border-bottom:1px solid var(--line)}
+.steps li:last-child{border-bottom:0}
+.num{font:700 26px/1.1 var(--serif);color:var(--gold)}
+.steps b{font-size:17px}
+.steps p{font-size:14.5px;color:var(--muted);margin-top:4px}
+
+/* form */
+.form-card{max-width:760px;margin:0 auto;background:var(--surface);border:1px solid var(--line);border-radius:18px;padding:30px 20px;box-shadow:0 20px 50px rgba(18,40,74,.08)}
+.form-sub{margin-top:8px;color:var(--muted);font-size:15px}
+fieldset{border:0;padding:0;margin:26px 0 0}
+legend,.field>span{display:block;font-size:14.5px;font-weight:700;margin-bottom:10px}
+em{font-style:normal;color:var(--gold);font-size:12px;font-weight:700;margin-left:4px}
+.field small{font-weight:500;color:var(--muted);font-size:12px;margin-left:4px}
+.chips{display:grid;grid-template-columns:repeat(2,1fr);gap:8px}
+.chips label{position:relative;display:flex}  /* 같은 줄 버튼은 높이를 맞춘다 */
+.chips input{position:absolute;opacity:0;inset:0;margin:0}
+.chips small{font-size:12px;opacity:.8}
+.chips span{flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center;min-height:48px;padding:8px 10px;border:1px solid var(--line);border-radius:10px;font-size:14.5px;text-align:center;line-height:1.35;background:var(--bg);cursor:pointer;transition:background .15s,border-color .15s}
+.chips input:checked+span{background:var(--ink);border-color:var(--ink);color:var(--bg);font-weight:700}
+.chips input:focus-visible+span{outline:2px solid var(--gold);outline-offset:2px}
+.field{display:block;margin-top:20px}
+.field input,.field select,.field textarea{width:100%;height:50px;border:1px solid var(--line);border-radius:10px;background:var(--bg);color:var(--ink);font:16px var(--sans);padding:0 14px}
+.field textarea{height:auto;padding:12px 14px;resize:vertical;line-height:1.6}
+.consent{margin-top:22px;padding:14px 16px;background:var(--bg);border:1px solid var(--line);border-radius:10px}
+.check{display:flex;gap:10px;align-items:center;font-size:14.5px;font-weight:600;cursor:pointer}
+.check input{width:20px;height:20px;accent-color:var(--gold);flex:none}
+details{margin-top:8px;font-size:13px;color:var(--muted)}
+summary{cursor:pointer;text-decoration:underline;text-underline-offset:3px}
+details p{margin-top:8px;line-height:1.7}
+.err{margin-top:16px;color:var(--danger);font-size:14px;font-weight:600}
+form .btn-block{margin-top:20px;height:58px;font-size:17px}
+.form-note{margin-top:12px;font-size:13px;color:var(--muted);text-align:center}
+.done{text-align:center;padding:24px 0 8px}
+.done svg{width:52px;height:52px;color:var(--gold)}
+.done h3{font:700 22px/1.4 var(--serif);margin-top:14px}
+.done p{margin-top:8px;color:var(--muted)}
+
+/* footer: 법무법인 도우화산 */
+.foot{background:var(--navy);color:var(--navy-muted);padding:56px 0 100px;font-size:13.5px}
+.foot-brand{display:flex;align-items:center;gap:12px;padding-bottom:28px;border-bottom:1px solid rgba(255,255,255,.12)}
+.foot-brand span{font-size:13px;text-wrap:balance}
+.firm{padding:32px 0}
+.firm-name{font:700 26px/1.3 var(--serif);color:var(--navy-ink);letter-spacing:-.01em}
+.firm-desc{margin-top:12px;max-width:40em;font-size:15px}
+.foot-info{padding-top:24px;border-top:1px solid rgba(255,255,255,.12);display:grid;gap:4px;line-height:1.8}
+.foot-info b{color:var(--navy-ink);font-weight:600}
+.foot a{color:var(--navy-ink);text-underline-offset:3px;white-space:nowrap}
+.nw{white-space:nowrap}
+.offices{display:grid;gap:16px;margin:14px 0 4px}
+.offices b{color:var(--navy-ink);font-weight:600}
+.policy{margin-top:14px;color:var(--navy-muted);font-size:13px}
+.policy summary{color:var(--navy-ink)}
+.policy div{margin-top:10px;padding:16px 18px;border:1px solid rgba(255,255,255,.14);border-radius:10px;max-width:760px}
+.policy ol{margin:10px 0;padding-left:18px;display:grid;gap:6px}
+.policy b{color:var(--navy-ink);font-weight:600;margin-right:6px}
+.foot-legal{margin-top:14px;font-size:12.5px}
+
+/* 오른쪽 따라오는 상담 버튼: 휴대폰·작은 PC는 오른쪽 아래 알약, 넓은 PC는 오른쪽 가운데 세로 카드 */
+.float{position:fixed;z-index:30;right:16px;bottom:calc(16px + env(safe-area-inset-bottom));display:flex;align-items:center;gap:8px;height:54px;padding:0 22px 0 18px;border-radius:999px;background:var(--gold);color:#fff;font-size:15.5px;font-weight:700;text-decoration:none;box-shadow:0 10px 28px rgba(10,20,36,.3);transition:opacity .25s,transform .25s,background .2s}
+.float:hover{background:#94723D}
+.float svg{width:20px;height:20px;flex:none}
+.float br{display:none}
+.float.off{opacity:0;transform:translateY(12px);pointer-events:none}
+@media (min-width:1280px){
+  .float{top:50%;bottom:auto;right:28px;transform:translateY(-50%);flex-direction:column;justify-content:center;width:86px;height:auto;padding:18px 0 16px;border-radius:16px;line-height:1.35;text-align:center;font-size:15px}
+  .float svg{width:26px;height:26px}
+  .float br{display:inline}
+  .float.off{transform:translate(12px,-50%)}
+}
+
+@media (min-width:900px){
+  .wrap{padding:0 32px}
+  .hero{padding:84px 0 100px}
+  .hero-in{grid-template-columns:1.15fr .85fr;align-items:center;gap:56px}
+  h1{font-size:50px}
+  .lead{font-size:18px}
+  .hero-cta{flex-direction:row;align-items:center;gap:16px}
+  .memo{justify-self:end;padding:30px 28px 22px}
+  .sec{padding:100px 0}
+  h2{font-size:34px}
+  .cases{grid-template-columns:repeat(4,1fr);gap:16px}
+  .case{grid-template-columns:1fr;padding:22px}
+  .case-ic{grid-row:auto;margin-bottom:16px}
+  .case-go{display:block}
+  .two{grid-template-columns:1fr 1fr;gap:80px}
+  .form-card{padding:48px 52px}
+  .chips{grid-template-columns:repeat(4,1fr)}
+  .row{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+  .foot{padding-bottom:40px}
+  .firm-name{font-size:34px}
+  .offices{grid-template-columns:1fr 1fr;gap:32px}
+}
+</style>
+</head>
+<body>
+
+<header class="top">
+  <div class="wrap top-in">
+    <a class="brand" href="#">
+      <span class="mark" aria-hidden="true">L</span>
+      <span class="brand-txt"><b data-i18n="brand">로프렌즈</b><small data-i18n="brandSub">LAW FRIENDS</small></span>
+    </a>
+    <div class="top-r">
+      <button type="button" class="lang" id="langBtn" aria-label="Switch to English">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M3 12h18"/><path d="M12 3c2.5 2.6 3.8 5.6 3.8 9s-1.3 6.4-3.8 9c-2.5-2.6-3.8-5.6-3.8-9S9.5 5.6 12 3z"/></svg>
+        <span id="langTxt" lang="en">EN</span>
+      </button>
+      <a class="btn btn-sm" href="#apply" data-i18n="headCta">상담 신청</a>
+    </div>
+  </div>
+</header>
+
+<main>
+<section class="hero">
+  <div class="wrap hero-in">
+    <div>
+      <p class="eyebrow" data-i18n="eyebrow">로프렌즈 상담서비스 - 법무법인 도우화산</p>
+      <h1 data-i18n="h1">이 일, 변호사에게<br>물어봐야 할지<br>고민될 때</h1>
+      <p class="lead" data-i18n="lead">검색할수록 말이 다르고, 내 상황에 맞는지 알기 어렵습니다. 내 상황을 간단히만 남겨주셔도 변호사가 직접 확인 후 연락하여 답변드립니다.</p>
+      <div class="hero-cta">
+        <a class="btn btn-gold" id="heroCta" href="#apply" data-i18n="cta">상담 신청 클릭!</a>
+        <span class="cta-note" data-i18n="ctaNote">30초면 신청할 수 있습니다</span>
+      </div>
+      <ul class="trust">
+        <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg><span data-i18n="trust1">변호사 직접 검토</span></li>
+        <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg><span data-i18n="trust2">100% 비밀유지</span></li>
+        <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg><span data-i18n="trust3">24시간 내 답변</span></li>
+      </ul>
+    </div>
+    <figure class="memo" id="memo" aria-label="사건 검토 메모 예시" data-i18n-aria="memoAria">
+      <span class="memo-tag" data-i18n="memoTag">예시</span>
+      <p class="memo-title" data-i18n="memoTitle">사건 검토 메모</p>
+      <dl>
+        <div><dt data-i18n="memoL0">사건 유형</dt><dd data-k="0">부동산 · 전세보증금</dd></div>
+        <div><dt data-i18n="memoL1">경과</dt><dd data-k="1">계약 만료 후 보증금 미반환</dd></div>
+        <div><dt data-i18n="memoL2">보유 자료</dt><dd data-k="2">계약서, 등기부, 문자 기록</dd></div>
+        <div><dt data-i18n="memoL3">검토 절차</dt><dd><mark data-k="3">임차권등기명령 · 지급명령</mark></dd></div>
+      </dl>
+      <div class="memo-foot"><span class="memo-dots" id="memoDots" aria-hidden="true"></span><span class="memo-sign" data-i18n="memoSign">변호사 직접 검토</span></div>
+    </figure>
+  </div>
+</section>
+
+<section class="sec" id="cases">
+  <div class="wrap">
+    <p class="kicker" data-i18n="casesKicker">상담 분야</p>
+    <h2 data-i18n="casesH2">이런 상황이라면,<br>먼저 절차를 확인하세요</h2>
+    <p class="sec-sub" data-i18n="casesSub">아래 해당되는 상황 클릭 시, 바로 상담 신청 가능</p>
+    <ul class="cases">
+      <li><button type="button" class="case" data-type="성범죄">
+        <span class="case-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 3h7l4 4v14H7z"/><path d="M14 3v4h4"/><path d="M12.5 10.5v4"/><path d="M12.5 17.2v.1"/></svg></span>
+        <span class="case-cat" data-i18n="c1cat">성범죄</span><strong data-i18n="c1t">경찰 출석 요청 받았다면<span class="nw">(가해자/피해자)</span></strong>
+        <span class="case-desc" data-i18n="c1d">출석 전에 경과를 날짜순으로 정리하세요. 경찰 조사받을 때, 미리 변호인 요청하세요.</span>
+        <span class="case-go" data-i18n="caseGo">상담 신청 →</span></button></li>
+      <li><button type="button" class="case" data-type="보이스피싱·로맨스스캠">
+        <span class="case-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="7" y="2.5" width="10" height="19" rx="2"/><path d="M11 18.5h2"/><path d="M12 7v4.5"/><path d="M12 14v.1"/></svg></span>
+        <span class="case-cat" data-i18n="c2cat">보이스피싱 · 로맨스스캠</span><strong data-i18n="c2t">돈을 보낸 뒤 사기라는 걸 알았다면</strong>
+        <span class="case-desc" data-i18n="c2d">먼저 은행에 연락하고, 이체 내역과 대화 기록을 남겨 두세요.</span>
+        <span class="case-go" data-i18n="caseGo">상담 신청 →</span></button></li>
+      <li><button type="button" class="case" data-type="명의대여·사기·횡령">
+        <span class="case-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="2"/><circle cx="9" cy="11" r="2"/><path d="M6 16c.6-1.6 1.8-2.4 3-2.4s2.4.8 3 2.4"/><path d="M14.5 10h4M14.5 13h3"/></svg></span>
+        <span class="case-cat" data-i18n="c3cat">명의대여 · 사기 · 횡령</span><strong data-i18n="c3t">명의만 빌려줬는데 빚이 생겼다면</strong>
+        <span class="case-desc" data-i18n="c3d">명의를 빌려준 사람도 책임질 수 있습니다. 형사·민사 대응을 함께 검토합니다.</span>
+        <span class="case-go" data-i18n="caseGo">상담 신청 →</span></button></li>
+      <li><button type="button" class="case" data-type="상간·이혼">
+        <span class="case-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="9" cy="12" r="5.5"/><circle cx="15" cy="12" r="5.5"/></svg></span>
+        <span class="case-cat" data-i18n="c4cat">상간 · 이혼</span><strong data-i18n="c4t">배우자의 외도를 알게 됐다면</strong>
+        <span class="case-desc" data-i18n="c4d">감정적으로 움직이기 전에 상담하세요. 증거는 적법하게 확보해야 합니다.</span>
+        <span class="case-go" data-i18n="caseGo">상담 신청 →</span></button></li>
+      <li><button type="button" class="case" data-type="미수금·대여금">
+        <span class="case-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><ellipse cx="12" cy="6.5" rx="6.5" ry="2.5"/><path d="M5.5 6.5v5c0 1.4 2.9 2.5 6.5 2.5s6.5-1.1 6.5-2.5v-5"/><path d="M5.5 11.5v5c0 1.4 2.9 2.5 6.5 2.5s6.5-1.1 6.5-2.5v-5"/></svg></span>
+        <span class="case-cat" data-i18n="c5cat">미수금 · 대여금 · 공사대금</span><strong data-i18n="c5t">빌려준 돈, 답이 없다면</strong>
+        <span class="case-desc" data-i18n="c5d">받을 권리에도 기한이 있습니다. 지급명령·소송·가압류 중 맞는 방법을 검토합니다.</span>
+        <span class="case-go" data-i18n="caseGo">상담 신청 →</span></button></li>
+      <li><button type="button" class="case" data-type="부동산·전세금">
+        <span class="case-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3.5 11L12 4l8.5 7"/><path d="M5.5 9.5V20h13V9.5"/><path d="M10 20v-5h4v5"/></svg></span>
+        <span class="case-cat" data-i18n="c6cat">부동산 · 전세금</span><strong data-i18n="c6t">계약이 끝났는데 보증금을 돌려주지 않는다면</strong>
+        <span class="case-desc" data-i18n="c6d">임차권등기명령, 내용증명 등 절차를 미리 확인하세요.</span>
+        <span class="case-go" data-i18n="caseGo">상담 신청 →</span></button></li>
+      <li><button type="button" class="case" data-type="국제·외국인">
+        <span class="case-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M3 12h18"/><path d="M12 3c2.5 2.6 3.8 5.6 3.8 9s-1.3 6.4-3.8 9c-2.5-2.6-3.8-5.6-3.8-9S9.5 5.6 12 3z"/></svg></span>
+        <span class="case-cat" data-i18n="c7cat" lang="en">Foreigner</span><strong lang="en">Legal Counsel in English</strong>
+        <span class="case-desc" lang="en">Full legal representation in Korea, explained clearly in English.</span>
+        <span class="case-go" data-i18n="caseGo">상담 신청 →</span></button></li>
+      <li><button type="button" class="case" data-type="기타">
+        <span class="case-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 5h16v11H9l-5 4z"/><path d="M8 9.5h8M8 12.5h5"/></svg></span>
+        <span class="case-cat" data-i18n="c8cat">그 밖의 민·형사</span><strong data-i18n="c8t">기타 분야</strong>
+        <span class="case-desc" data-i18n="c8d">분야를 모르시거나, 위 분야가 아니라도 문제 없습니다. 상황만 기재하시면 바로 답변드립니다.</span>
+        <span class="case-go" data-i18n="caseGo">상담 신청 →</span></button></li>
+    </ul>
+  </div>
+</section>
+
+<section class="sec sec-alt">
+  <div class="wrap two">
+    <div>
+      <p class="kicker" data-i18n="prepKicker">상담 전 준비</p>
+      <h2 data-i18n="prepH2">상담 전에 챙겨 두면<br>좋은 자료</h2>
+      <ul class="checks">
+        <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3.5" y="3.5" width="17" height="17" rx="4"/><path d="M8 12.3l2.8 2.7L16 9.5"/></svg><div data-i18n="prep1"><b>사건 경과 메모</b><span>언제, 무슨 일이 있었는지 날짜순으로</span></div></li>
+        <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3.5" y="3.5" width="17" height="17" rx="4"/><path d="M8 12.3l2.8 2.7L16 9.5"/></svg><div data-i18n="prep2"><b>대화·통화 기록</b><span>문자, 메신저, 통화 내역</span></div></li>
+        <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3.5" y="3.5" width="17" height="17" rx="4"/><path d="M8 12.3l2.8 2.7L16 9.5"/></svg><div data-i18n="prep3"><b>계약, 거래 자료 등</b><span>계약서, 차용증, 이체 내역 등 사건 관련 문서</span></div></li>
+        <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3.5" y="3.5" width="17" height="17" rx="4"/><path d="M8 12.3l2.8 2.7L16 9.5"/></svg><div data-i18n="prep4"><b>받은 서류</b><span>경찰·법원·상대방에게서 받은 문서</span></div></li>
+      </ul>
+      <p class="note" data-i18n="prepNote">자료가 없어도 상담 신청은 할 수 있습니다.</p>
+    </div>
+    <div>
+      <p class="kicker" data-i18n="stepsKicker">진행 방법</p>
+      <h2 data-i18n="stepsH2">신청부터 상담까지</h2>
+      <ol class="steps">
+        <li><span class="num">01</span><div data-i18n="step1"><b>상담 신청</b><p>사건 유형과 연락처, 지역을 남겨 주세요.</p></div></li>
+        <li><span class="num">02</span><div data-i18n="step2"><b>변호사 검토</b><p>법무법인 도우화산 변호사가 신청 내용을 직접 확인합니다.</p></div></li>
+        <li><span class="num">03</span><div data-i18n="step3"><b>연락 및 상담</b><p>남겨 주신 연락처로 연락드리고, 필요한 절차를 안내합니다.</p></div></li>
+      </ol>
+    </div>
+  </div>
+</section>
+
+<section class="sec" id="apply">
+  <div class="wrap">
+    <div class="form-card">
+      <p class="kicker" data-i18n="formKicker">상담 신청</p>
+      <h2 data-i18n="formH2">상황을 간단히 남겨 주세요</h2>
+      <p class="form-sub" data-i18n="formSub">신청하신 내용은 변호사에게만 전달되므로 100% 비밀 보장됩니다.</p>
+      <form id="f" novalidate>
+        <fieldset>
+          <legend data-i18n="typeL">사건 유형 <em>필수</em></legend>
+          <div class="chips">
+            <label><input type="radio" name="type" value="성범죄"><span data-i18n="chip1">성범죄</span></label>
+            <label><input type="radio" name="type" value="보이스피싱·로맨스스캠"><span data-i18n="chip2">보이스피싱·로맨스스캠</span></label>
+            <label><input type="radio" name="type" value="명의대여·사기·횡령"><span data-i18n="chip3">명의대여·사기·횡령</span></label>
+            <label><input type="radio" name="type" value="상간·이혼"><span data-i18n="chip4">상간·이혼</span></label>
+            <label><input type="radio" name="type" value="미수금·대여금"><span data-i18n="chip5">미수금·대여금·공사대금</span></label>
+            <label><input type="radio" name="type" value="부동산·전세금"><span data-i18n="chip6">부동산·전세금</span></label>
+            <label><input type="radio" name="type" value="국제·외국인"><span data-i18n="chip7">국제·외국인<small lang="en">(International/English)</small></span></label>
+            <label><input type="radio" name="type" value="기타"><span data-i18n="chip8">기타 민형사·상사 등</span></label>
+          </div>
+        </fieldset>
+        <div class="row">
+          <label class="field"><span data-i18n="nameL">이름 <em>필수</em></span><input name="name" autocomplete="name" maxlength="40"></label>
+          <label class="field"><span data-i18n="phoneL">연락처 <em>필수</em></span><input name="phone" type="tel" inputmode="tel" autocomplete="tel" maxlength="20" placeholder="010-0000-0000"></label>
+        </div>
+        <label class="field"><span data-i18n="regionL">지역(전국/해외 가능)</span>
+          <select name="region" id="region"></select>
+        </label>
+        <label class="field"><span data-i18n="memoL">상황 설명<small>선택</small></span><textarea name="memo" rows="4" maxlength="1000" placeholder="언제, 어떤 일이 있었는지 간단히 적어 주세요. 비워 두셔도 됩니다." data-i18n-ph="memoPh"></textarea></label>
+        <div class="consent">
+          <label class="check"><input type="checkbox" name="agree" value="동의"><span data-i18n="agreeL">개인정보 수집·이용에 동의합니다 <em>필수</em></span></label>
+          <details><summary data-i18n="more">자세히 보기</summary>
+            <p data-i18n="agreeD">수집 항목: 이름, 연락처, 사건 유형, 지역, 상황 설명<br>
+            이용 목적: 상담 신청 확인 및 연락<br>
+            보관 기간: 신청일로부터 1년 후 파기(상담이 수임으로 이어지면 관련 법령에 따름)<br>
+            제3자 제공: 없음(법무법인 도우화산만 확인합니다)<br>
+            동의하지 않으실 수 있으나, 이 경우 상담 신청이 어렵습니다.</p>
+          </details>
+        </div>
+        <p class="err" id="err" role="alert" hidden></p>
+        <button class="btn btn-gold btn-block" type="submit" data-i18n="submit">상담 신청하기</button>
+        <p class="form-note" data-i18n="formNote">상담 내용은 변호사법에 따라 비밀이 유지됩니다.</p>
+      </form>
+      <div class="done" id="done" hidden>
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9.5"/><path d="M7.5 12.3l3 3L16.5 9"/></svg>
+        <h3 data-i18n="doneH">상담 신청이 접수되었습니다</h3>
+        <p data-i18n="doneP">법무법인 도우화산 변호사가 내용을 확인한 뒤,<br>남겨 주신 연락처로 연락드립니다.</p>
+      </div>
+    </div>
+  </div>
+</section>
+</main>
+
+<footer class="foot">
+  <div class="wrap">
+    <div class="foot-brand">
+      <span class="mark" aria-hidden="true">L</span>
+      <span data-i18n="eyebrow">로프렌즈 상담서비스 - 법무법인 도우화산</span>
+    </div>
+    <div class="firm">
+      <p class="kicker" data-i18n="firmKicker">운영</p>
+      <p class="firm-name" data-i18n="firmName">법무법인 도우화산</p>
+      <p class="firm-desc" data-i18n="firmDesc">로프렌즈는 법무법인 도우화산이 운영하는 법률 상담 서비스입니다. 신청하신 내용은 변호사만 직접 확인하여 회신, 답변드리며, 상담내용은 다른 기관 또는 다른 사무소로 전혀 전달되지 않습니다.</p>
+    </div>
+    <div class="foot-info">
+      <p data-i18n="firmLine"><b>법무법인 도우화산</b> · 광고책임변호사 윤호근 · 사업자등록번호 <span class="nw">102-85-07664</span></p>
+      <div class="offices">
+        <div><b data-i18n="seoul">서울 사무소</b><p data-i18n="seoulAddr">서울특별시 강남구 테헤란로 437, 삼영빌딩 701호 <span class="nw">(삼성동 144-22)</span></p>
+          <p>Tel <a href="tel:02-6207-1114">02-6207-1114</a> · <a href="mailto:dowoo@dowoolaw.com">dowoo@dowoolaw.com</a></p></div>
+        <div><b data-i18n="suwon">수원 사무소</b><p data-i18n="suwonAddr">경기도 수원시 영통구 동수원로 545, 화산빌딩 2층 (원천동)</p>
+          <p>Tel <a href="tel:031-212-2222">031-212-2222</a> · <a href="mailto:dowoo@dowoolaw.com">dowoo@dowoolaw.com</a></p></div>
+      </div>
+      <details class="policy" id="policy"><summary data-i18n="policyS">개인정보처리방침</summary>
+        <div data-i18n="policyB">
+          <p>법무법인 도우화산(이하 '법인')은 로프렌즈 상담 신청으로 받은 개인정보를 「개인정보 보호법」에 따라 아래와 같이 처리합니다.</p>
+          <ol>
+            <li><b>수집 항목</b> 이름, 연락처, 사건 유형, 지역, 상황 설명(선택)</li>
+            <li><b>이용 목적</b> 상담 신청 확인, 상담을 위한 연락</li>
+            <li><b>보관 기간</b> 신청일로부터 1년이 지나면 지체 없이 파기합니다. 상담이 수임으로 이어지면 관련 법령에서 정한 기간 동안 보관합니다.</li>
+            <li><b>제3자 제공</b> 법인은 신청 정보를 다른 법률사무소나 제3자에게 제공하지 않습니다.</li>
+            <li><b>처리 위탁</b> 신청 정보 저장: Google LLC(구글 시트), 접수 알림 발송: Telegram(메신저). 두 회사의 서버는 국외에 있을 수 있습니다.</li>
+            <li><b>정보주체의 권리</b> 언제든지 개인정보의 열람·정정·삭제·처리정지를 요청할 수 있으며, 법인은 지체 없이 조치합니다.</li>
+            <li><b>개인정보 보호책임자</b> 윤호근 · <span class="nw">02-6207-1114</span> · dowoo@dowoolaw.com</li>
+          </ol>
+          <p>시행일: 2026년 11월</p>
+        </div>
+      </details>
+      <p class="foot-legal" data-i18n="legal">이 페이지는 법무법인 도우화산의 광고입니다. 사건의 결과는 개별 사실관계에 따라 달라질 수 있습니다.<br>© 2026 법무법인 도우화산</p>
+    </div>
+  </div>
+</footer>
+
+<a class="float" id="float" href="#apply" aria-label="상담 신청하기" data-i18n-aria="cta">
+  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 20h4L19 9a2.8 2.8 0 0 0-4-4L4 16z"/><path d="M13.5 6.5l4 4"/></svg>
+  <span data-i18n="float">상담<br> 신청</span>
+</a>
+
+<script>
+// ---------- 영어 문구 (한국어는 페이지에 쓰인 그대로를 원본으로 쓴다) ----------
+const FIRM = 'Law Firm Dowoo Hwasan';  // 영문 명칭(2026-11-21 수정 요청), 바뀌면 여기만 고친다
+const EN = {
+  title: `Law Friends | ${FIRM}`,
+  brand: 'Law Friends', brandSub: '로프렌즈', headCta: 'Contact',
+  eyebrow: 'Law Friends — Legal Services by Dowoo Hwasan Law Firm',
+  h1: 'Not sure if<br>you need legal<br>representation?',
+  lead: 'Online legal info can be confusing and conflicting. Tell us briefly what happened, and an attorney at Dowoo Hwasan Law Firm will review your case and follow up.',
+  cta: 'Request a Case Evaluation', ctaNote: 'Takes about 30 seconds',
+  trust1: 'Reviewed by an attorney', trust2: 'Privileged & Confidential', trust3: 'Response within 24 hours',
+  memoAria: 'Example initial case assessment', memoTag: 'Example', memoTitle: 'Initial Case Assessment',
+  memoL0: 'Matter', memoL1: 'Status', memoL2: 'Evidence', memoL3: 'Legal Remedies', memoSign: 'Reviewed by an Attorney',
+  casesKicker: 'Practice areas', casesH2: 'If this sounds familiar,<br>check your legal <span class="nw">options first</span>',
+  casesSub: 'Select your situation below to submit an inquiry right away.', caseGo: 'Request →',
+  c1cat: 'Sexual offenses', c1t: 'You have been summoned for police questioning <span class="nw">(accused or victim)</span>',
+  c1d: 'Write down what happened in chronological order before you go. Request an attorney before the police question you.',
+  c2cat: 'Wire fraud · Romance scams', c2t: 'You sent money, then realized it was a scam',
+  c2d: 'Call your bank first, and keep your transfer records and chat history.',
+  c3cat: 'Unauthorized use of name · Fraud', c3t: 'Your name was used, and now there is debt',
+  c3d: 'Whether you lent your name or it was used without consent, you may still be held liable. We review criminal and civil options together.',
+  c4cat: 'Adultery · Divorce', c4t: 'You found out your spouse is having an affair',
+  c4d: 'Talk to us before acting on emotion. Evidence must be gathered lawfully.',
+  c5cat: 'Debt collection · Loans · Construction payments', c5t: 'You lent money and get no reply',
+  c5d: 'Your right to collect has time limits. We review whether a payment order, lawsuit or provisional seizure fits.',
+  c6cat: 'Real estate · Lease deposits', c6t: 'Your lease has ended but the landlord will not return your deposit',
+  c6d: 'Check procedures such as a lease registration order or a certified letter in advance.',
+  c7cat: 'International · Foreign residents',  // 제목·설명은 한국어 화면에서도 영어 그대로(2026-11-21 요청)
+  c8cat: 'Other civil & criminal', c8t: 'Other matters',
+  c8d: 'Not sure which area applies, or not listed above? No problem. Just describe your situation and we will respond promptly.',
+  prepKicker: 'Before your inquiry', prepH2: 'Helpful documents<br>to have ready',
+  prep1: '<b>A timeline of events</b><span>What happened and when, in chronological order</span>',
+  prep2: '<b>Messages and call logs</b><span>Texts, messenger chats, call history</span>',
+  prep3: '<b>Contracts and transaction records</b><span>Contracts, promissory notes, wire records and other case-related documents</span>',
+  prep4: '<b>Documents you received</b><span>Anything from the police, a court or the opposing party</span>',
+  prepNote: 'You can submit an inquiry even without these.',
+  stepsKicker: 'How it works', stepsH2: 'From inquiry to response',
+  step1: '<b>Request</b><p>Leave your case type, phone number and region.</p>',
+  step2: `<b>Attorney review</b><p>An attorney at ${FIRM} reviews your request directly.</p>`,
+  step3: '<b>Call and follow-up</b><p>We contact you at the number you provided and explain the procedures that apply.</p>',
+  formKicker: 'Inquiry form', formH2: 'Tell us briefly what happened',
+  formSub: 'Your request goes only to an attorney, so it stays completely confidential.',
+  typeL: 'Case type <em>Required</em>',
+  chip1: 'Sexual offense', chip2: 'Wire fraud · Romance scam', chip3: 'Unauthorized use of name · Fraud', chip4: 'Adultery · Divorce',
+  chip5: 'Debt collection · Loan · Construction', chip6: 'Real property · Deposit', chip7: 'International<small>(English)</small>', chip8: 'Other civil, criminal & commercial',
+  nameL: 'Name <em>Required</em>', phoneL: 'Phone <em>Required</em>', regionL: 'Region (nationwide / overseas)',
+  memoL: 'What happened<small>Optional</small>',
+  memoPh: 'Briefly describe what happened and when. You may leave this blank.',
+  agreeL: 'I agree to the collection and use of my personal information <em>Required</em>',
+  more: 'Details',
+  agreeD: `Items collected: name, phone number, case type, region, description<br>Purpose: to confirm your request and contact you<br>Retention: deleted 1 year after the request (kept longer only where the law requires it if we take your case)<br>Third parties: none, only ${FIRM} reviews it<br>You may decline, but we will not be able to process your request.`,
+  submit: 'Request a Case Evaluation', sending: 'Sending…',
+  formNote: 'Your inquiry is kept confidential under the <span class="nw">Attorney-at-Law Act</span>.',
+  doneH: 'Your request has been received',
+  doneP: `An attorney at ${FIRM} will review it<br>and contact you at the number you provided.`,
+  firmKicker: 'Operated by', firmName: FIRM,
+  firmDesc: `Law Friends is a legal inquiry service operated by ${FIRM}. Only an attorney reviews and responds to your request, and your inquiry is never passed on to any other agency or law firm.`,
+  firmLine: `<b>${FIRM}</b> · Attorney responsible for advertising: Ho Keun Yoon · Business registration no. <span class="nw">102-85-07664</span>`,
+  seoul: 'Seoul office', seoulAddr: '#701, Samyoung Bldg., 437 Teheran-ro, Gangnam-gu, Seoul',
+  suwon: 'Suwon office', suwonAddr: '2F, Hwasan Bldg., 545 Dongsuwon-ro, Yeongtong-gu, Suwon-si, Gyeonggi-do',
+  policyS: 'Privacy policy',
+  policyB: `<p>${FIRM} (the "Firm") handles personal information received through Law Friends inquiries under Korea's Personal Information Protection Act as follows.</p><ol>
+    <li><b>Items collected</b> Name, phone number, case type, region, description (optional)</li>
+    <li><b>Purpose</b> To confirm your inquiry and contact you about it</li>
+    <li><b>Retention</b> Deleted without delay 1 year after the request. If we take your case, records are kept for the period required by law.</li>
+    <li><b>Third parties</b> The Firm does not share your request with other law firms or any third party.</li>
+    <li><b>Processors</b> Storage: Google LLC (Google Sheets). Request alerts: Telegram (messenger). Their servers may be located outside Korea.</li>
+    <li><b>Your rights</b> You may ask at any time to access, correct, delete or stop the processing of your information, and the Firm will act without delay.</li>
+    <li><b>Privacy officer</b> Ho Keun Yoon · <span class="nw">+82-2-6207-1114</span> · dowoo@dowoolaw.com</li>
+  </ol><p>Effective: November 2026</p>`,
+  legal: `This page is an advertisement by ${FIRM}. Outcomes depend on the facts of each case.<br>© 2026 ${FIRM}`,
+  float: 'Contact<br> us',
+};
+const MSG = {
+  ko: { type: '사건 유형을 골라 주세요.', name: '이름을 적어 주세요.', phone: '휴대폰 번호를 확인해 주세요.',
+        agree: '개인정보 수집·이용에 동의해 주세요.', notReady: '온라인 접수를 준비 중입니다. 급하시면 02-6207-1114로 전화해 주세요.',
+        fail: '접수하지 못했습니다. 잠시 후 다시 시도해 주세요.', sending: '접수 중…' },
+  en: { type: 'Please choose a case type.', name: 'Please enter your name.', phone: 'Please check your phone number.',
+        agree: 'Please agree to the collection and use of your personal information.', notReady: 'Online inquiries are being set up. For urgent matters, please call +82-2-6207-1114.',
+        fail: 'We could not send your request. Please try again shortly.', sending: EN.sending },
+};
+const MEMOS = {
+  ko: [
+    ['부동산 · 전세보증금', '계약 만료 후 보증금 미반환', '계약서, 등기부, 문자 기록', '임차권등기명령 · 지급명령'],
+    ['성범죄', '경찰 출석 요청을 받음', '경과 메모, 대화·통화 기록', '진술 정리 · 변호인 참여'],
+    ['보이스피싱 · 로맨스스캠', '송금 후 연락 두절', '이체 내역, 대화 캡처', '지급정지 · 고소 · 환급'],
+    ['명의대여 · 사기', '명의 대여 후 독촉장 수령', '계약서, 이체 내역, 대화', '형사 고소 · 민사 대응'],
+    ['상간 · 이혼', '배우자의 외도 정황 확인', '메신저 기록, 지출 내역', '위자료 · 재산분할'],
+    ['미수금 · 대여금', '6개월째 변제 없음', '차용증, 이체 내역, 문자', '지급명령 · 가압류 · 소송'],
+  ],
+  en: [
+    ['Security Deposit Dispute', 'Lease Ended, Deposit Withheld', 'Lease Agreement, Property Registry, Text Messages', 'Leasehold Registration Order · Payment Order'],
+    ['Sexual Offense Allegation', 'Police Investigation / Summons', 'Timeline, Messages, Call Records', 'Defense Preparation · Representation at Police Interview'],
+    ['Wire Fraud · Romance Scam', 'Funds Wired, Contact Lost', 'Wire Transfer Records, Chat Logs', 'Account Freeze · Criminal Complaint · Fund Recovery'],
+    ['Unauthorized Use of Name · Fraud', 'Collection Notice Received', 'Agreement, Wire Records, Messages', 'Criminal Complaint · Civil Defense'],
+    ['Adultery · Divorce', 'Evidence of Infidelity', 'Text Messages, Credit Card Billing Records', 'Alimony / Damages · Division of Marital Assets'],
+    ['Loan Default', '6 Months Past Due', 'Promissory Note, Wire Records, Text Messages', 'Demand Letter · Asset Seizure'],
+  ],
+};
+
+// 지역 선택: 값은 시트에 한국어로 저장하고, 영어 화면에서는 영문 이름만 보여 준다
+const REGIONS = [['서울', 'Seoul'], ['경기', 'Gyeonggi'], ['인천', 'Incheon'], ['충북', 'Chungbuk'], ['충남', 'Chungnam'],
+  ['대전', 'Daejeon'], ['세종', 'Sejong'], ['강원', 'Gangwon'], ['전북', 'Jeonbuk'], ['전남', 'Jeonnam'], ['광주', 'Gwangju'],
+  ['경북', 'Gyeongbuk'], ['경남', 'Gyeongnam'], ['대구', 'Daegu'], ['울산', 'Ulsan'], ['부산', 'Busan'], ['제주', 'Jeju'],
+  ['해외', 'Overseas']];
+function fillRegions() {
+  const s = document.getElementById('region'), v = s.value, en = lang === 'en';
+  s.innerHTML = `<option value="">${en ? 'Select region' : '지역 선택'}</option>` +
+    REGIONS.map(([ko, e]) => `<option value="${ko}">${en ? e : ko}</option>`).join('');
+  s.value = v;
+}
+
+const f = document.getElementById('f'), err = document.getElementById('err'), done = document.getElementById('done');
+const apply = document.getElementById('apply');
+const memo = document.getElementById('memo'), cells = memo.querySelectorAll('[data-k]');
+let lang = 'ko', mi = 0;
+
+// 쉼표·가운뎃점 사이의 두 단어 구절은 한 덩어리로 둔다("Asset / Seizure"처럼 끊기지 않게).
+// 세 단어 이상은 좁은 휴대폰에서 칸을 넘칠 수 있어 그대로 줄바꿈을 허용한다.
+// 가운뎃점은 앞 단어에 붙여 줄 맨 앞에 오지 않게 한다.
+const memoText = s => (/[,·]/.test(s)
+  ? s.replace(/[^,·]+/g, m => m.trim().split(/\s+/).length === 2 ? m.replace(/(\S) (?=\S)/g, '$1 ') : m) : s)
+  .replace(/ ·/g, ' ·');
+const showMemo = row => cells.forEach(c => c.textContent = memoText(row[c.dataset.k]));
+
+// 메모 높이를 가장 긴 예시에 맞춰 고정한다(유형이 바뀔 때 아래 내용이 들썩이지 않게)
+function fitMemo() {
+  const dl = memo.querySelector('dl'); let max = 0;
+  dl.style.minHeight = '';
+  for (const row of MEMOS[lang]) { showMemo(row); max = Math.max(max, dl.offsetHeight); }
+  dl.style.minHeight = max + 'px';
+  showMemo(MEMOS[lang][mi]);
+}
+addEventListener('resize', fitMemo);
+document.fonts.ready.then(fitMemo);
+
+// ---------- 언어 전환 ----------
+const KO = new Map();  // 원래(한국어) 내용을 요소별로 기억
+const each = (attr, fn) => document.querySelectorAll(`[${attr}]`).forEach(fn);
+each('data-i18n', el => KO.set(el, el.innerHTML));
+each('data-i18n-ph', el => KO.set(el, el.placeholder));
+each('data-i18n-aria', el => KO.set(el, el.getAttribute('aria-label')));
+const KO_TITLE = document.title;
+
+function setLang(l) {
+  lang = l === 'en' ? 'en' : 'ko';
+  const en = lang === 'en';
+  document.documentElement.lang = lang;
+  document.title = en ? EN.title : KO_TITLE;
+  each('data-i18n', el => el.innerHTML = en ? EN[el.dataset.i18n] : KO.get(el));
+  each('data-i18n-ph', el => el.placeholder = en ? EN[el.dataset.i18nPh] : KO.get(el));
+  each('data-i18n-aria', el => el.setAttribute('aria-label', en ? EN[el.dataset.i18nAria] : KO.get(el)));
+  fitMemo(); fillRegions();
+  const t = document.getElementById('langTxt');
+  t.textContent = en ? '한국어' : 'EN'; t.lang = en ? 'ko' : 'en';
+  document.getElementById('langBtn').setAttribute('aria-label', en ? '한국어로 보기' : 'Switch to English');
+  if (!err.hidden) err.hidden = true;
+  try { localStorage.setItem('lang', lang); } catch (e) {}
+}
+document.getElementById('langBtn').addEventListener('click', () => setLang(lang === 'en' ? 'ko' : 'en'));
+
+fillRegions();
+
+// 처음 언어: 주소의 ?lang=en > 전에 고른 언어 > 브라우저 언어
+function startLang(param) {
+  let saved = null; try { saved = localStorage.getItem('lang'); } catch (e) {}
+  const browser = (navigator.language || 'ko').toLowerCase().startsWith('ko') ? 'ko' : 'en';
+  const pick = [param, saved, browser].find(v => v === 'ko' || v === 'en');
+  if (pick !== lang) setLang(pick);
+}
+startLang(new URLSearchParams(location.search).get('lang'));
+
+// ---------- 분야 카드 → 신청서 ----------
+document.querySelectorAll('.case').forEach(b => b.addEventListener('click', () => {
+  const r = f.querySelector(`input[name="type"][value="${b.dataset.type}"]`);
+  if (r) r.checked = true;
+  apply.scrollIntoView();
+}));
+
+// 따라오는 상담 버튼: 신청서가 보이는 동안은 숨긴다.
+// 휴대폰·작은 화면에서는 첫 화면의 큰 신청 버튼이 보이는 동안에도 숨긴다(메모 카드를 가리지 않게).
+const floatBtn = document.getElementById('float'), inView = {}, wide = matchMedia('(min-width:1280px)');
+const updateFloat = () => floatBtn.classList.toggle('off', !!inView.apply || (!wide.matches && !!inView.heroCta));
+const floatIO = new IntersectionObserver(es => { es.forEach(e => inView[e.target.id] = e.isIntersecting); updateFloat(); });
+floatIO.observe(apply); floatIO.observe(document.getElementById('heroCta'));
+wide.addEventListener('change', updateFloat);
+
+// ---------- 사건 검토 메모: 유형을 돌아가며 보여 준다(마우스를 올리면 멈춤, 움직임 줄이기 설정이면 첫 장만) ----------
+const dots = MEMOS.ko.map(() => document.getElementById('memoDots').appendChild(document.createElement('i')));
+let paused = false;
+dots[0].className = 'on';
+memo.addEventListener('mouseenter', () => paused = true);
+memo.addEventListener('mouseleave', () => paused = false);
+if (!matchMedia('(prefers-reduced-motion: reduce)').matches) setInterval(() => {
+  if (paused || document.hidden) return;
+  memo.classList.add('swap');
+  setTimeout(() => {
+    dots[mi].className = ''; mi = (mi + 1) % MEMOS.ko.length; dots[mi].className = 'on';
+    showMemo(MEMOS[lang][mi]);
+    const m = memo.querySelector('mark'); m.style.animation = 'none'; m.offsetWidth; m.style.animation = '';  // 형광펜 다시 긋기
+    memo.classList.remove('swap');
+  }, 300);
+}, 3200);
+
+// ---------- 신청: 앱스 스크립트 웹 앱으로 보내고, 응답이 ok일 때만 접수 완료로 표시 ----------
+// text/plain으로 보내야 브라우저가 사전 요청(CORS preflight) 없이 바로 보낸다
+async function sendInquiry(url, d) {
+  const r = await fetch(url, { method: 'POST', headers: { 'Content-Type': 'text/plain;charset=utf-8' }, body: JSON.stringify(d) });
+  const j = await r.json().catch(() => ({}));
+  if (!r.ok || !j.ok) throw new Error(j.error || 'HTTP ' + r.status);
+}
+
+function show(msg){ err.textContent = msg; err.hidden = false; }
+
+f.addEventListener('submit', async e => {
+  e.preventDefault(); err.hidden = true;
+  const m = MSG[lang], d = Object.fromEntries(new FormData(f));
+  const phone = (d.phone || '').replace(/[^\d+]/g, '');
+  const okPhone = /^01\d{8,9}$/.test(phone) || /^\+\d{8,15}$/.test(phone);  // 국내 휴대폰 또는 +국가번호
+  const msg = !d.type ? m.type : !(d.name || '').trim() ? m.name : !okPhone ? m.phone : !d.agree ? m.agree : '';
+  if (msg) return show(msg);
+  const url = document.querySelector('meta[name="lf-endpoint"]').content.trim();
+  if (!url) return show(m.notReady);
+  d.name = d.name.trim();
+  d.phone = phone.replace(/^(01\d)(\d{3,4})(\d{4})$/, '$1-$2-$3');
+  d.lang = lang.toUpperCase();
+  d.submittedAt = new Date().toISOString();
+  const qs = new URLSearchParams(location.search);  // 메타 광고 주소에 붙는 utm 값 → 어느 광고에서 왔는지
+  d.ad = [qs.get('utm_campaign'), qs.get('utm_content')].filter(Boolean).join(' / ');
+  const btn = f.querySelector('button[type="submit"]');
+  btn.disabled = true; btn.textContent = m.sending;
+  try { await sendInquiry(url, d); f.hidden = true; done.hidden = false; }
+  catch (x) { show(m.fail + ' (' + x.message + ')'); }
+  finally { btn.disabled = false; btn.innerHTML = lang === 'en' ? EN.submit : KO.get(btn); }
+});
+</script>
+</body>
+</html>
