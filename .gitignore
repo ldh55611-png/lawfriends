@@ -5,3 +5,8 @@
 !index.html
 !CNAME
 !og.png
+!robots.txt
+!sitemap.xml
+# 구글 서치콘솔·네이버 서치어드바이저 소유 확인 파일
+!google*.html
+!naver*.html

@@ -3,8 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<!-- 정식 공개(견적 승인) 전까지 검색 노출 막기: 공개할 때 이 줄을 지운다 -->
-<meta name="robots" content="noindex">
+<link rel="canonical" href="https://law-friends.net/">
 <!-- 상담 신청을 받을 구글 앱스 스크립트 웹 앱 주소(…/exec). 비어 있으면 "접수 준비 중" 안내만 나온다 -->
 <meta name="lf-endpoint" content="https://script.google.com/macros/s/AKfycbxODHInXH6-UiOMrLHbfrOBb3NOJJeeZtwePv6nqV1B3P_x1ltpxZQOlaJ95VeLSVbSbA/exec">
 <title>로프렌즈 | 법무법인 도우화산</title>
@@ -133,7 +132,8 @@ h2{font:700 25px/1.42 var(--serif);letter-spacing:-.02em;text-wrap:balance}
 
 /* form */
 .form-card{max-width:760px;margin:0 auto;background:var(--surface);border:1px solid var(--line);border-radius:18px;padding:30px 20px;box-shadow:0 20px 50px rgba(18,40,74,.08)}
-.form-sub{margin-top:8px;color:var(--muted);font-size:15px}
+.form-card > .kicker{text-align:center}
+.form-sub{margin-top:8px;color:var(--muted);font-size:15px;text-align:center;text-wrap:balance}
 fieldset{border:0;padding:0;margin:26px 0 0}
 legend,.field>span{display:block;font-size:14.5px;font-weight:700;margin-bottom:10px}
 em{font-style:normal;color:var(--gold);font-size:12px;font-weight:700;margin-left:4px}
@@ -347,7 +347,6 @@ form .btn-block{margin-top:20px;height:58px;font-size:17px}
   <div class="wrap">
     <div class="form-card">
       <p class="kicker" data-i18n="formKicker">상담 신청</p>
-      <h2 data-i18n="formH2">상황을 간단히 남겨 주세요</h2>
       <p class="form-sub" data-i18n="formSub">신청하신 내용은 변호사에게만 전달되므로 100% 비밀 보장됩니다.</p>
       <form id="f" novalidate>
         <fieldset>
@@ -479,7 +478,7 @@ const EN = {
   step1: '<b>Request</b><p>Leave your case type, phone number and region.</p>',
   step2: `<b>Attorney review</b><p>An attorney at ${FIRM} reviews your request directly.</p>`,
   step3: '<b>Call and follow-up</b><p>We contact you at the number you provided and explain the procedures that apply.</p>',
-  formKicker: 'Inquiry form', formH2: 'Tell us briefly what happened',
+  formKicker: 'Inquiry form',
   formSub: 'Your request goes only to an attorney, so it stays completely confidential.',
   typeL: 'Case type <em>Required</em>',
   chip1: 'Sexual offense', chip2: 'Wire fraud · Romance scam', chip3: 'Unauthorized use of name · Fraud', chip4: 'Adultery · Divorce',
