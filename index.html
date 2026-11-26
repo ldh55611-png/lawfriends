@@ -679,7 +679,11 @@ f.addEventListener('submit', async e => {
   d.ad = [qs.get('utm_campaign'), qs.get('utm_content')].filter(Boolean).join(' / ');
   const btn = f.querySelector('button[type="submit"]');
   btn.disabled = true; btn.textContent = m.sending;
-  try { await sendInquiry(url, d); f.hidden = true; done.hidden = false; }
+  try {
+    await sendInquiry(url, d); f.hidden = true; done.hidden = false;
+    // 태그 매니저 전환 신호. 사건유형·이름·연락처는 광고·분석 쪽으로 보내지 않는다
+    dataLayer.push({ event: 'lead_submit' });
+  }
   catch (x) { show(m.fail + ' (' + x.message + ')'); }
   finally { btn.disabled = false; btn.innerHTML = lang === 'en' ? EN.submit : KO.get(btn); }
 });
